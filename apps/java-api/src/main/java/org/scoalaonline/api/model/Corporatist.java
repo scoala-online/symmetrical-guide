@@ -29,7 +29,7 @@ public class Corporatist {
   private String email;
 
   @ManyToOne
-  private Departament departament;
+  private Department department;
 
   //region for Constructors.
 
@@ -83,13 +83,11 @@ public class Corporatist {
    * Getter function for the departament.
    * @return the departament of the corporatist.
    */
-  public Departament getDepartament() {
-    return departament;
+  public Department getDepartament() {
+    return department;
   }
 
   //region for Setters
-
-
   /**
    * Setter function for the ID.
    * @param id which is the id for the corporatist.
@@ -132,10 +130,10 @@ public class Corporatist {
 
   /**
    * Setter function for the Department object.
-   * @param departament which is the department onject for the Corporatist class.
+   * @param department which is the department onject for the Corporatist class.
    */
-  public void setDepartament(Departament departament) {
-    this.departament = departament;
+  public void setDepartament(Department department) {
+    this.department = department;
   }
 
   /**
@@ -149,7 +147,7 @@ public class Corporatist {
     if (o == null || getClass() != o.getClass()) return false;
     Corporatist corporatist = (Corporatist) o;
     return id == corporatist.id &&
-      departament == corporatist.departament &&
+      department == corporatist.department &&
       firstName.equals(corporatist.firstName) &&
       middleName.equals(corporatist.middleName) &&
       lastName.equals(corporatist.lastName) &&
@@ -162,6 +160,6 @@ public class Corporatist {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, middleName, lastName, email, departament);
+    return Objects.hash(id, firstName, middleName, lastName, email, department);
   }
 }
