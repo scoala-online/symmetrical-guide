@@ -35,7 +35,7 @@ public class CorporatistService {
     return corporatistRepo.findById(id);
   }
 
-  /***
+  /**
    * Adds a corporatist entity into the database.
    * @param corporatist which is the entity to be added.
    * @return the repo with the entity added.
