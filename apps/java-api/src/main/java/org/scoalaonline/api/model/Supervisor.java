@@ -80,10 +80,10 @@ public class Supervisor {
   }
 
   /**
-   * Getter function for the departament.
-   * @return the departament of the Supervisor.
+   * Getter function for the department.
+   * @return the department of the Supervisor.
    */
-  public Department getDepartament() {
+  public Department getDepartment() {
     return department;
   }
 
@@ -130,16 +130,16 @@ public class Supervisor {
 
   /**
    * Setter function for the Department object.
-   * @param department which is the department onject for the Supervisor class.
+   * @param department which is the department object for the Supervisor class.
    */
-  public void setDepartament(Department department) {
+  public void setDepartment(Department department) {
     this.department = department;
   }
 
   /**
-   * Equals function for the object.
-   * @param o TODO: DEFINE HERE
-   * @return whether the object is the corporatist class or not.
+   * Verifies whether the object is a supervisor or not.
+   * @param o the object to be tested.
+   * @return whether it's an entity in the supervisor database.
    */
   @Override
   public boolean equals(Object o) {
@@ -154,9 +154,10 @@ public class Supervisor {
       email.equals(supervisor.email);
   }
 
+
   /**
-   * TODO: COMMENT HERE
-   * @return TODO: COMMENT HERE
+   * HashMaps the id and the supervisor details.
+   * @return a HashMap.
    */
   @Override
   public int hashCode() {

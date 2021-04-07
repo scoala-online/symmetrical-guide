@@ -12,7 +12,6 @@ import java.util.Objects;
 @Table(name = "corporatist")
 public class Corporatist {
 
-  //region fields
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "corporatist_id")
@@ -35,8 +34,6 @@ public class Corporatist {
 
   @ManyToOne
   private Supervisor supervisor;
-
-  //region for Constructors.
 
   /**
    * Constructor for Corporatist.
@@ -100,7 +97,6 @@ public class Corporatist {
     return supervisor;
   }
 
-  //region for Setters
   /**
    * Setter function for the ID.
    * @param id which is the id for the corporatist.
@@ -158,9 +154,9 @@ public class Corporatist {
   }
 
   /**
-   * Equals function for the object.
-   * @param o TODO: DEFINE HERE
-   * @return whether the object is the corporatist class or not.
+   * Verifies whether the object is a corporatist or not.
+   * @param o the object to be tested.
+   * @return whether it's an entity in the corporatist database.
    */
   @Override
   public boolean equals(Object o) {
