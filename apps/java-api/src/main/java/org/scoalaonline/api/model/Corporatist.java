@@ -1,7 +1,5 @@
 package org.scoalaonline.api.model;
 
-import net.bytebuddy.implementation.bind.annotation.Super;
-
 import javax.persistence.*;
 import java.util.Objects;
 

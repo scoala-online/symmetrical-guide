@@ -16,7 +16,7 @@ public class Department {
   private String departmentName;
 
   @OneToOne (cascade = CascadeType.ALL)
-  @JoinColumn (name = "supervisor_id", referencedColumnName = "department_id")
+  @JoinColumn (name = "department_id", referencedColumnName = "supervisor_id")
   private Supervisor supervisor;
 
   /**
