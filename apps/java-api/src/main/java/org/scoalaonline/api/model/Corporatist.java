@@ -10,7 +10,6 @@ import java.util.Objects;
 @Table(name = "corporatist")
 public class Corporatist {
 
-  //region fields
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "corporatist_id")
@@ -31,7 +30,8 @@ public class Corporatist {
   @ManyToOne
   private Department department;
 
-  //region for Constructors.
+  @ManyToOne
+  private Supervisor supervisor;
 
   /**
    * Constructor for Corporatist.
@@ -83,11 +83,18 @@ public class Corporatist {
    * Getter function for the departament.
    * @return the departament of the corporatist.
    */
-  public Department getDepartament() {
+  public Department getDepartment() {
     return department;
   }
 
-  //region for Setters
+  /**
+   * Getter function for the supervisor of the corporatist.
+   * @return the supervisor.
+   */
+  public Supervisor getSupervisor() {
+    return supervisor;
+  }
+
   /**
    * Setter function for the ID.
    * @param id which is the id for the corporatist.
@@ -132,14 +139,22 @@ public class Corporatist {
    * Setter function for the Department object.
    * @param department which is the department onject for the Corporatist class.
    */
-  public void setDepartament(Department department) {
+  public void setDepartment(Department department) {
     this.department = department;
   }
 
   /**
-   * Equals function for the object.
-   * @param o TODO: DEFINE HERE
-   * @return whether the object is the corporatist class or not.
+   * Setter function for the supervisor of the corporatist.
+   * @param supervisor which will be the new supervisor.
+   */
+  public void setSupervisor(Supervisor supervisor) {
+    this.supervisor = supervisor;
+  }
+
+  /**
+   * Verifies whether the object is a corporatist or not.
+   * @param o the object to be tested.
+   * @return whether it's an entity in the corporatist database.
    */
   @Override
   public boolean equals(Object o) {
@@ -147,6 +162,7 @@ public class Corporatist {
     if (o == null || getClass() != o.getClass()) return false;
     Corporatist corporatist = (Corporatist) o;
     return id == corporatist.id &&
+      supervisor == corporatist.supervisor &&
       department == corporatist.department &&
       firstName.equals(corporatist.firstName) &&
       middleName.equals(corporatist.middleName) &&
@@ -155,11 +171,11 @@ public class Corporatist {
   }
 
   /**
-   * TODO: COMMENT HERE
-   * @return TODO: COMMENT HERE
+   * Hashes the id to the rest of the corporatist data.
+   * @return the hash of the object.
    */
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, middleName, lastName, email, department);
+    return Objects.hash(id, firstName, middleName, lastName, email, department, supervisor);
   }
 }
