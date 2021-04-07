@@ -5,6 +5,7 @@ import org.scoalaonline.api.repo.DepartmentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class DepartmentService {
@@ -45,23 +46,26 @@ public class DepartmentService {
   }
 
   /**
-   * Updates a departemnt
+   * Updates a department
    * @param id the id of the department to be changed
    * @param department the configuration of the new department
    * @return the configuration with the department changed
    */
   public Department updateDepartment (long id, Department department ) {
-    Department departmentToUpdate = departmentRepo.findById( id ).get();
+    try {
+      Department departmentToUpdate = departmentRepo.findById(id).get();
+      if (department.getName() != null) {
+        departmentToUpdate.setName(department.getName());
+      }
 
-    if( department.getName() != null ) {
-      departmentToUpdate.setName( department.getName() );
+      if (department.getSupervisor() != null) {
+        departmentToUpdate.setSupervisor(department.getSupervisor());
+      }
+      return departmentRepo.save(departmentToUpdate);
+    } catch (NoSuchElementException e) {
+      System.out.println("The department to update doesn't exist");
+      return null;
     }
-
-    if( department.getSupervisor() != null ) {
-      departmentToUpdate.setSupervisor( department.getSupervisor() );
-    }
-
-    return departmentRepo.save( departmentToUpdate );
   }
 
   /**

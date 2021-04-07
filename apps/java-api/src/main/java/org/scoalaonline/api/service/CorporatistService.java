@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
@@ -47,6 +48,8 @@ public class CorporatistService {
     corporatistToAdd.setLastName(corporatist.getLastName());
     corporatistToAdd.setEmail(corporatist.getEmail());
     corporatistToAdd.setDepartment(corporatist.getDepartment());
+    corporatistToAdd.setSupervisor(corporatist.getSupervisor());
+    corporatistToAdd.setId(corporatist.getId());
 
     return corporatistRepo.save(corporatistToAdd);
   }
@@ -58,23 +61,29 @@ public class CorporatistService {
    * @return the repo with the changed entity.
    */
   public Corporatist updateCorporatist (long id, Corporatist corporatist) {
-    Corporatist corporatistToUpdate = corporatistRepo.findById(id).get();
-    if (corporatist.getFirstName() != null) {
-      corporatistToUpdate.setFirstName(corporatist.getFirstName());
+    try {
+      Corporatist corporatistToUpdate = corporatistRepo.findById(id).get();
+      if (corporatist.getFirstName() != null) {
+        corporatistToUpdate.setFirstName(corporatist.getFirstName());
+      }
+        corporatistToUpdate.setMiddleName(corporatist.getMiddleName());
+      if (corporatist.getLastName() != null) {
+        corporatistToUpdate.setLastName(corporatist.getLastName());
+      }
+      if (corporatist.getEmail() != null) {
+        corporatistToUpdate.setEmail(corporatist.getEmail());
+      }
+      if (corporatist.getDepartment() != null) {
+        corporatistToUpdate.setDepartment(corporatist.getDepartment());
+      }
+      if (corporatist.getSupervisor() != null) {
+        corporatistToUpdate.setSupervisor(corporatist.getSupervisor());
+      }
+      return corporatistRepo.save(corporatistToUpdate);
+    } catch (NoSuchElementException e) {
+      System.out.println("The corporatist to update doesn't exist");
+      return null;
     }
-    if (corporatist.getMiddleName() != null) {
-      corporatistToUpdate.setMiddleName(corporatist.getMiddleName());
-    }
-    if (corporatist.getLastName() != null) {
-      corporatistToUpdate.setLastName(corporatist.getLastName());
-    }
-    if (corporatist.getEmail() != null) {
-      corporatistToUpdate.setEmail(corporatist.getEmail());
-    }
-    if (corporatist.getDepartment() != null) {
-      corporatistToUpdate.setDepartment(corporatist.getDepartment());
-    }
-    return corporatistRepo.save(corporatistToUpdate);
   }
 
   /**
