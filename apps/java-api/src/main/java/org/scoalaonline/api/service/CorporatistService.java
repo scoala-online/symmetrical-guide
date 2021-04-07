@@ -46,7 +46,7 @@ public class CorporatistService {
     corporatistToAdd.setMiddleName(corporatist.getMiddleName());
     corporatistToAdd.setLastName(corporatist.getLastName());
     corporatistToAdd.setEmail(corporatist.getEmail());
-    corporatistToAdd.setDepartament(corporatist.getDepartament());
+    corporatistToAdd.setDepartment(corporatist.getDepartment());
 
     return corporatistRepo.save(corporatistToAdd);
   }
@@ -71,8 +71,8 @@ public class CorporatistService {
     if (corporatist.getEmail() != null) {
       corporatistToUpdate.setEmail(corporatist.getEmail());
     }
-    if (corporatist.getDepartament() != null) {
-      corporatistToUpdate.setDepartament(corporatist.getDepartament());
+    if (corporatist.getDepartment() != null) {
+      corporatistToUpdate.setDepartment(corporatist.getDepartment());
     }
     return corporatistRepo.save(corporatistToUpdate);
   }
