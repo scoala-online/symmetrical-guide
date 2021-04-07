@@ -1,5 +1,7 @@
 package org.scoalaonline.api.model;
 
+import net.bytebuddy.implementation.bind.annotation.Super;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -30,6 +32,9 @@ public class Corporatist {
 
   @ManyToOne
   private Department department;
+
+  @ManyToOne
+  private Supervisor supervisor;
 
   //region for Constructors.
 
@@ -83,8 +88,16 @@ public class Corporatist {
    * Getter function for the departament.
    * @return the departament of the corporatist.
    */
-  public Department getDepartament() {
+  public Department getDepartment() {
     return department;
+  }
+
+  /**
+   * Getter function for the supervisor of the corporatist.
+   * @return the supervisor.
+   */
+  public Supervisor getSupervisor() {
+    return supervisor;
   }
 
   //region for Setters
@@ -132,8 +145,16 @@ public class Corporatist {
    * Setter function for the Department object.
    * @param department which is the department onject for the Corporatist class.
    */
-  public void setDepartament(Department department) {
+  public void setDepartment(Department department) {
     this.department = department;
+  }
+
+  /**
+   * Setter function for the supervisor of the corporatist.
+   * @param supervisor which will be the new supervisor.
+   */
+  public void setSupervisor(Supervisor supervisor) {
+    this.supervisor = supervisor;
   }
 
   /**
@@ -147,6 +168,7 @@ public class Corporatist {
     if (o == null || getClass() != o.getClass()) return false;
     Corporatist corporatist = (Corporatist) o;
     return id == corporatist.id &&
+      supervisor == corporatist.supervisor &&
       department == corporatist.department &&
       firstName.equals(corporatist.firstName) &&
       middleName.equals(corporatist.middleName) &&
@@ -155,11 +177,11 @@ public class Corporatist {
   }
 
   /**
-   * TODO: COMMENT HERE
-   * @return TODO: COMMENT HERE
+   * Hashes the id to the rest of the corporatist data.
+   * @return the hash of the object.
    */
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, middleName, lastName, email, department);
+    return Objects.hash(id, firstName, middleName, lastName, email, department, supervisor);
   }
 }

@@ -15,10 +15,14 @@ public class Department {
   @Column(name = "department_name", nullable = false, length = 20)
   private String departmentName;
 
+  @OneToOne (cascade = CascadeType.ALL)
+  @JoinColumn (name = "supervisor_id", referencedColumnName = "department_id")
+  private Supervisor supervisor;
+
   /**
    * Constructor for department
    */
-  public Departament() {
+  public Department() {
   }
 
   /**

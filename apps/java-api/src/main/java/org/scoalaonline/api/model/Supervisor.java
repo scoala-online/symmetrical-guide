@@ -28,7 +28,7 @@ public class Supervisor {
   @Column(name = "email", nullable = false, length = 200)
   private String email;
 
-  @OneToOne
+  @OneToOne(mappedBy = "supervisor")
   private Department department;
 
   //region for Constructors.
