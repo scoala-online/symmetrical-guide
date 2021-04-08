@@ -41,7 +41,6 @@ public class SupervisorService {
   public Supervisor addSupervisor (Supervisor supervisor) {
     Supervisor supervisorToAdd = new Supervisor();
 
-    supervisorToAdd.setId(supervisor.getId());
     supervisorToAdd.setFirstName(supervisor.getFirstName());
     supervisorToAdd.setMiddleName(supervisor.getMiddleName());
     supervisorToAdd.setLastName(supervisor.getLastName());
