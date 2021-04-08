@@ -39,7 +39,6 @@ public class DepartmentService {
   public Department addDepartment ( Department department ) {
     Department departmentToAdd = new Department();
     departmentToAdd.setName( department.getName() );
-    departmentToAdd.setId( department.getId() );
     departmentToAdd.setSupervisor( department.getSupervisor() );
 
     return departmentRepo.save( departmentToAdd );
