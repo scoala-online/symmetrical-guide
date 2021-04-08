@@ -49,7 +49,6 @@ public class CorporatistService {
     corporatistToAdd.setEmail(corporatist.getEmail());
     corporatistToAdd.setDepartment(corporatist.getDepartment());
     corporatistToAdd.setSupervisor(corporatist.getSupervisor());
-    corporatistToAdd.setId(corporatist.getId());
 
     return corporatistRepo.save(corporatistToAdd);
   }
