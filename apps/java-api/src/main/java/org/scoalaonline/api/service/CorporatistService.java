@@ -65,7 +65,9 @@ public class CorporatistService {
       if (corporatist.getFirstName() != null) {
         corporatistToUpdate.setFirstName(corporatist.getFirstName());
       }
+      if (corporatist.getMiddleName() != null) {
         corporatistToUpdate.setMiddleName(corporatist.getMiddleName());
+      }
       if (corporatist.getLastName() != null) {
         corporatistToUpdate.setLastName(corporatist.getLastName());
       }
