@@ -74,7 +74,7 @@ public class SupervisorService {
       }
       return supervisorRepo.save(supervisorToUpdate);
     } catch (NoSuchElementException e) {
-      System.out.println("The given id doesn't link to any supervisor.");
+      System.out.println("The supervisor to update doesn't exist.");
       return null;
     }
   }
