@@ -38,7 +38,7 @@ public class Department {
    * Getter for the name of the department
    * @return the name of the department
    */
-  public String getName() {
+  public String getDepartmentName() {
     return departmentName;
   }
 
@@ -60,7 +60,7 @@ public class Department {
   /**
    * Setter for the name of the department
    */
-  public void setName(String departmentName) {
+  public void setDepartmentName(String departmentName) {
     this.departmentName = departmentName;
   }
 

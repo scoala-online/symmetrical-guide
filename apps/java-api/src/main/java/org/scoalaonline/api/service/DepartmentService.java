@@ -38,7 +38,7 @@ public class DepartmentService {
    */
   public Department addDepartment ( Department department ) {
     Department departmentToAdd = new Department();
-    departmentToAdd.setName( department.getName() );
+    departmentToAdd.setDepartmentName( department.getDepartmentName() );
     departmentToAdd.setSupervisor( department.getSupervisor() );
 
     return departmentRepo.save( departmentToAdd );
@@ -53,8 +53,8 @@ public class DepartmentService {
   public Department updateDepartment (long id, Department department ) {
     try {
       Department departmentToUpdate = departmentRepo.findById(id).get();
-      if (department.getName() != null) {
-        departmentToUpdate.setName(department.getName());
+      if (department.getDepartmentName() != null) {
+        departmentToUpdate.setDepartmentName(department.getDepartmentName());
       }
 
       if (department.getSupervisor() != null) {
