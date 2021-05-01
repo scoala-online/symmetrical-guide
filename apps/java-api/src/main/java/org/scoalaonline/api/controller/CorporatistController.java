@@ -12,7 +12,7 @@ import org.scoalaonline.api.exception.*;
 import java.util.List;
 
 /**
- * TODO: ADD DESCRIPTION HERE
+ * Controller controller class, containing GET functions.
  */
 @RestController
 @RequestMapping("/corporatist")
@@ -23,8 +23,8 @@ public class CorporatistController {
 
   //region getter mappings
   /**
-   *
-   * @return
+   * Returns all corporatists from the list.
+   * @return a list of corporatists, along with HttpStatus.OK.
    */
   @GetMapping(value = {"", "/"})
   public ResponseEntity<List<Corporatist>> getAllCorporatists() {
@@ -33,9 +33,9 @@ public class CorporatistController {
   }
 
   /**
-   *
-   * @param id
-   * @return
+   * Returns a certain corporatist.
+   * @param id which is the id of the entity.
+   * @return the corporatist entity or an http error if it doesn't exist.
    */
   @GetMapping(value = "/{id}")
   public ResponseEntity<Corporatist> getCorporatistById(@PathVariable("id") long id) {
@@ -45,6 +45,5 @@ public class CorporatistController {
       ));
     return new ResponseEntity<>(corporatist, HttpStatus.OK);
   }
-
   //endregion
 }

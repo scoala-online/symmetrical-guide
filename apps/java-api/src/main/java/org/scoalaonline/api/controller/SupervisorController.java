@@ -1,6 +1,5 @@
 package org.scoalaonline.api.controller;
 
-import net.bytebuddy.implementation.bind.annotation.Super;
 import org.scoalaonline.api.model.Supervisor;
 import org.scoalaonline.api.service.SupervisorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,10 @@ import org.scoalaonline.api.exception.*;
 import java.util.List;
 
 /**
- * TODO: ADD DESCRIPTION HERE
+ * Supervisor controller class, containing GET functions.
  */
 @RestController
-@RequestMapping("/department")
+@RequestMapping("/supervisor")
 public class SupervisorController {
 
   @Autowired
@@ -24,8 +23,8 @@ public class SupervisorController {
 
   //region getter mappings
   /**
-   * TODO: COMMENT HERE
-   * @return
+   * Returns all supervisors from the list.
+   * @return a list of supervisors, along with HttpStatus.OK.
    */
   @GetMapping(value = {"", "/"})
   public ResponseEntity<List<Supervisor>> getAllSupervisors() {
@@ -34,9 +33,9 @@ public class SupervisorController {
   }
 
   /**
-   * TODO: COMMENT HERE
-   * @param id
-   * @return
+   * Returns a certain supervisor.
+   * @param id which is the id of the entity.
+   * @return the supervisor entity or an http error if it doesn't exist.
    */
   @GetMapping(value = "/{id}")
   public ResponseEntity<Supervisor> getCorporatistById(@PathVariable("id") long id) {

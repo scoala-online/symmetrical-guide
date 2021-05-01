@@ -12,7 +12,7 @@ import org.scoalaonline.api.exception.*;
 import java.util.List;
 
 /**
- * TODO: ADD DESCRIPTION HERE
+ * Department controller class, containing GET functions.
  */
 @RestController
 @RequestMapping("/department")
@@ -23,8 +23,8 @@ public class DepartmentController {
 
   //region getter mappings
   /**
-   * TODO: COMMENT HERE
-   * @return
+   * Returns all departments from the list.
+   * @return a list of departments, along with HttpStatus.OK.
    */
   @GetMapping(value = {"", "/"})
   public ResponseEntity<List<Department>> getAllDepartments() {
@@ -33,9 +33,9 @@ public class DepartmentController {
   }
 
   /**
-   * TODO: COMMENT HERE
-   * @param id
-   * @return
+   * Returns a certain department.
+   * @param id which is the department of the entity.
+   * @return the department entity or an http error if it doesn't exist.
    */
   @GetMapping(value = "/{id}")
   public ResponseEntity<Department> getDepartmentById(@PathVariable("id") long id) {
