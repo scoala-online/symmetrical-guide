@@ -1,5 +1,7 @@
 package org.scoalaonline.api.controller;
 
+import net.bytebuddy.implementation.bind.annotation.Super;
+import org.scoalaonline.api.model.Department;
 import org.scoalaonline.api.model.Supervisor;
 import org.scoalaonline.api.service.SupervisorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,6 @@ public class SupervisorController {
   @Autowired
   SupervisorService supervisorService;
 
-  //region getter mappings
   /**
    * Returns all supervisors from the list.
    * @return a list of supervisors, along with HttpStatus.OK.
@@ -46,5 +47,15 @@ public class SupervisorController {
     return new ResponseEntity<>(supervisor, HttpStatus.OK);
   }
 
-  //endregion
+  /**
+   * Adds a Supervisor entity into the database.
+   * @param supervisor which is the entity to be added
+   * @return the added supervisor with the Http status created.
+   */
+  @PostMapping(value = {"","/"})
+  public ResponseEntity<Supervisor> addSupervisor (@RequestBody Supervisor supervisor) {
+    Supervisor savedSupervisor = supervisorService.addSupervisor(supervisor);
+    return new ResponseEntity<>(savedSupervisor, HttpStatus.CREATED);
+  }
+
 }
