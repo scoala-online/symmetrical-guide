@@ -41,7 +41,7 @@ public class DepartmentController {
   public ResponseEntity<Department> getDepartmentById(@PathVariable("id") long id) {
     Department department = departmentService.getDepartmentById(id)
       .orElseThrow(() -> new ResponseStatusException(
-        HttpStatus.NOT_FOUND, "No department founds with this ID", new ResourceNotFoundException()
+        HttpStatus.NOT_FOUND, "No department found with this ID", new ResourceNotFoundException()
       ));
     return new ResponseEntity<>(department, HttpStatus.OK);
   }
