@@ -15,7 +15,7 @@ import java.util.List;
  * Supervisor controller class, containing GET functions.
  */
 @RestController
-@RequestMapping("/supervisor")
+@RequestMapping("/supervisors")
 public class SupervisorController {
 
   @Autowired
