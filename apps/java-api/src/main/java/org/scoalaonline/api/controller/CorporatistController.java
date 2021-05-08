@@ -12,7 +12,7 @@ import org.scoalaonline.api.exception.*;
 import java.util.List;
 
 /**
- * Controller controller class, containing GET functions.
+ * Corporatist controller class, containing GET functions.
  */
 @RestController
 @RequestMapping("/corporatists")
