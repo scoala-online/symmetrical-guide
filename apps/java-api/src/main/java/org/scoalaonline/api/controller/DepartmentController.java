@@ -15,7 +15,7 @@ import java.util.List;
  * Department controller class, containing GET functions.
  */
 @RestController
-@RequestMapping("/department")
+@RequestMapping("/departments")
 public class DepartmentController {
 
   @Autowired
