@@ -38,7 +38,7 @@ public class SupervisorController {
    * @return the supervisor entity or an http error if it doesn't exist.
    */
   @GetMapping(value = "/{id}")
-  public ResponseEntity<Supervisor> getCorporatistById(@PathVariable("id") long id) {
+  public ResponseEntity<Supervisor> getSupervisorById(@PathVariable("id") long id) {
     Supervisor supervisor = supervisorService.getSupervisorByID(id)
       .orElseThrow(() -> new ResponseStatusException(
         HttpStatus.NOT_FOUND, "No department founds with this ID", new ResourceNotFoundException()
