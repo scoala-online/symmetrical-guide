@@ -41,7 +41,7 @@ public class SupervisorController {
   public ResponseEntity<Supervisor> getSupervisorById(@PathVariable("id") long id) {
     Supervisor supervisor = supervisorService.getSupervisorByID(id)
       .orElseThrow(() -> new ResponseStatusException(
-        HttpStatus.NOT_FOUND, "No department founds with this ID", new ResourceNotFoundException()
+        HttpStatus.NOT_FOUND, "No supervisor found with this ID", new ResourceNotFoundException()
       ));
     return new ResponseEntity<>(supervisor, HttpStatus.OK);
   }
