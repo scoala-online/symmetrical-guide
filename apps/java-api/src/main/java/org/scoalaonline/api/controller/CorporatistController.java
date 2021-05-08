@@ -15,7 +15,7 @@ import java.util.List;
  * Controller controller class, containing GET functions.
  */
 @RestController
-@RequestMapping("/corporatist")
+@RequestMapping("/corporatists")
 public class CorporatistController {
 
   @Autowired
