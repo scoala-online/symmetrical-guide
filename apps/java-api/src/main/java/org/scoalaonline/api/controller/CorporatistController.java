@@ -12,10 +12,10 @@ import org.scoalaonline.api.exception.*;
 import java.util.List;
 
 /**
- * Controller controller class, containing GET functions.
+ * Corporatist controller class, containing GET functions.
  */
 @RestController
-@RequestMapping("/corporatist")
+@RequestMapping("/corporatists")
 public class CorporatistController {
 
   @Autowired
@@ -40,7 +40,7 @@ public class CorporatistController {
   public ResponseEntity<Corporatist> getCorporatistById(@PathVariable("id") long id) {
     Corporatist corporatist = corporatistService.getCorporatistByID(id)
       .orElseThrow(() -> new ResponseStatusException(
-        HttpStatus.NOT_FOUND, "No corporatist founds with this ID", new ResourceNotFoundException()
+        HttpStatus.NOT_FOUND, "No corporatist found with this ID", new ResourceNotFoundException()
       ));
     return new ResponseEntity<>(corporatist, HttpStatus.OK);
   }
