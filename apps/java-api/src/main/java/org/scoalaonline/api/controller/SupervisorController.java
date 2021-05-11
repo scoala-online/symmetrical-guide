@@ -17,7 +17,7 @@ import java.util.List;
  * Supervisor controller class, containing GET functions.
  */
 @RestController
-@RequestMapping("/supervisor")
+@RequestMapping("/supervisors")
 public class SupervisorController {
 
   @Autowired
@@ -39,10 +39,10 @@ public class SupervisorController {
    * @return the supervisor entity or an http error if it doesn't exist.
    */
   @GetMapping(value = "/{id}")
-  public ResponseEntity<Supervisor> getCorporatistById(@PathVariable("id") long id) {
+  public ResponseEntity<Supervisor> getSupervisorById(@PathVariable("id") long id) {
     Supervisor supervisor = supervisorService.getSupervisorByID(id)
       .orElseThrow(() -> new ResponseStatusException(
-        HttpStatus.NOT_FOUND, "No department founds with this ID", new ResourceNotFoundException()
+        HttpStatus.NOT_FOUND, "No supervisor found with this ID", new ResourceNotFoundException()
       ));
     return new ResponseEntity<>(supervisor, HttpStatus.OK);
   }
