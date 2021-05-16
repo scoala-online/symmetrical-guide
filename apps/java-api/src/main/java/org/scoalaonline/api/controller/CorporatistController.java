@@ -56,4 +56,21 @@ public class CorporatistController {
     return new ResponseEntity<>(savedCorporatist, HttpStatus.CREATED);
   }
 
+  /**
+   * Deletes a Corporatist entity from the database.
+   * @param id which is the entity's id to be deleted
+   * @return the deleted Corporatist with the Http status created.
+   */
+
+  @DeleteMapping(value = ("/{id}"))
+  public ResponseEntity<HttpStatus> deleteCorporatist (@PathVariable("id") long id) {
+    if (corporatistService.corporatistExists(id)) {
+      corporatistService.deleteCorporatist(id);
+      return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot delete non-existing Corporatist", new ResourceNotFoundException()
+      );
+    }
+  }
 }

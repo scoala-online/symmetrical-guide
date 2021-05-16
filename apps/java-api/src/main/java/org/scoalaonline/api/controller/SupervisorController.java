@@ -58,4 +58,21 @@ public class SupervisorController {
     return new ResponseEntity<>(savedSupervisor, HttpStatus.CREATED);
   }
 
+  /**
+   * Deletes a Supervisor entity from the database.
+   * @param id which is the entity's id to be deleted
+   * @return the deleted Supervisor with the Http status created.
+   */
+
+  @DeleteMapping(value = ("/{id}"))
+  public ResponseEntity<HttpStatus> deleteSupervisor (@PathVariable("id") long id) {
+    if (supervisorService.supervisorExists(id)) {
+      supervisorService.deleteSupervisor(id);
+      return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot delete non-existing Supervisor", new ResourceNotFoundException()
+      );
+    }
+  }
 }

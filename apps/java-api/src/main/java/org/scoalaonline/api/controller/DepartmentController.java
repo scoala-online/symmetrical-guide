@@ -47,7 +47,6 @@ public class DepartmentController {
     return new ResponseEntity<>(department, HttpStatus.OK);
   }
 
-
   /**
    * Adds a department entity into the database.
    * @param department which is the entity to be added
@@ -57,6 +56,24 @@ public class DepartmentController {
   public ResponseEntity<Department> addDepartment (@RequestBody Department department) {
     Department savedDepartment = departmentService.addDepartment(department);
     return new ResponseEntity<>(savedDepartment, HttpStatus.CREATED);
+  }
+
+  /**
+   * Deletes a Department entity from the database.
+   * @param id which is the entity's id to be deleted
+   * @return the deleted Department with the Http status created.
+   */
+
+  @DeleteMapping(value = ("/{id}"))
+  public ResponseEntity<HttpStatus> deleteDepartment (@PathVariable("id") long id) {
+    if (departmentService.departmentExists(id)) {
+      departmentService.deleteDepartment(id);
+      return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot delete non-existing Department", new ResourceNotFoundException()
+      );
+    }
   }
 
   //endregion
