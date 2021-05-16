@@ -56,4 +56,23 @@ public class CorporatistController {
     return new ResponseEntity<>(savedCorporatist, HttpStatus.CREATED);
   }
 
+  /**
+   * Updates a Corporatist entity from the database.
+   * @param id which is the entity's id to be changed
+   * @param corporatist which is the updated entity
+   * @return the updated Corporatist with the Http status created.
+   */
+
+  @PutMapping(value = ("/{id}"))
+  public ResponseEntity<Corporatist> updateCorporatist (@PathVariable("id") long id,
+                                                      @RequestBody Corporatist corporatist) {
+    if (corporatistService.corporatistExists(id)) {
+      Corporatist updatedCorporatist = corporatistService.updateCorporatist(id, corporatist);
+      return new ResponseEntity<>(updatedCorporatist, HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot update non-existing Corporatist", new ResourceNotFoundException()
+      );
+    }
+  }
 }
