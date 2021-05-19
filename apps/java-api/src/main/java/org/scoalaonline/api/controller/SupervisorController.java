@@ -14,7 +14,7 @@ import org.scoalaonline.api.exception.*;
 import java.util.List;
 
 /**
- * Supervisor controller class, containing GET functions.
+ * Supervisor controller class, containing GET, POST, PUT and DELETE functions.
  */
 @RestController
 @RequestMapping("/supervisors")

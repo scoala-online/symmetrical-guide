@@ -13,7 +13,7 @@ import org.scoalaonline.api.exception.*;
 import java.util.List;
 
 /**
- * Department controller class, containing GET functions.
+ * Department controller class, containing GET, POST, PUT and DELETE functions.
  */
 @RestController
 @RequestMapping("/departments")
