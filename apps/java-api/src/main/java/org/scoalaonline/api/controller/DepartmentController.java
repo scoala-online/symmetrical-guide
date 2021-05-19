@@ -21,7 +21,6 @@ public class DepartmentController {
   @Autowired
   DepartmentService departmentService;
 
-  //region getter mappings
   /**
    * Returns all departments from the list.
    * @return a list of departments, along with HttpStatus.OK.
@@ -77,6 +76,4 @@ public class DepartmentController {
       );
     }
   }
-
-  //endregion
 }
