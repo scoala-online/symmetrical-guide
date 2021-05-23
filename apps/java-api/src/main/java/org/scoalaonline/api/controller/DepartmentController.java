@@ -1,5 +1,6 @@
 package org.scoalaonline.api.controller;
 
+import org.scoalaonline.api.model.Corporatist;
 import org.scoalaonline.api.model.Department;
 import org.scoalaonline.api.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,18 @@ public class DepartmentController {
         HttpStatus.NOT_FOUND, "No department found with this ID", new ResourceNotFoundException()
       ));
     return new ResponseEntity<>(department, HttpStatus.OK);
+  }
+
+
+  /**
+   * Adds a department entity into the database.
+   * @param department which is the entity to be added
+   * @return the added department with the Http status created.
+   */
+  @PostMapping(value = {"","/"})
+  public ResponseEntity<Department> addDepartment (@RequestBody Department department) {
+    Department savedDepartment = departmentService.addDepartment(department);
+    return new ResponseEntity<>(savedDepartment, HttpStatus.CREATED);
   }
 
   //endregion

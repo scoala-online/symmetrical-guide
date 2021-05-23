@@ -21,7 +21,6 @@ public class CorporatistController {
   @Autowired
   CorporatistService corporatistService;
 
-  //region getter mappings
   /**
    * Returns all corporatists from the list.
    * @return a list of corporatists, along with HttpStatus.OK.
@@ -45,5 +44,16 @@ public class CorporatistController {
       ));
     return new ResponseEntity<>(corporatist, HttpStatus.OK);
   }
-  //endregion
+
+  /**
+   * Adds a corporatist entity into the database.
+   * @param corporatist which is the entity to be added
+   * @return the added corporatist with the Http status created.
+   */
+  @PostMapping(value = {"","/"})
+  public ResponseEntity<Corporatist> addCorporatist (@RequestBody Corporatist corporatist) {
+    Corporatist savedCorporatist = corporatistService.addCorporatist(corporatist);
+    return new ResponseEntity<>(savedCorporatist, HttpStatus.CREATED);
+  }
+
 }
