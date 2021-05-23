@@ -1,6 +1,7 @@
 package org.scoalaonline.api.controller;
 
 import net.bytebuddy.implementation.bind.annotation.Super;
+import org.scoalaonline.api.model.Corporatist;
 import org.scoalaonline.api.model.Department;
 import org.scoalaonline.api.model.Supervisor;
 import org.scoalaonline.api.service.SupervisorService;
@@ -14,7 +15,7 @@ import org.scoalaonline.api.exception.*;
 import java.util.List;
 
 /**
- * Supervisor controller class, containing GET functions.
+ * Supervisor controller class, containing GET, POST, PUT and DELETE functions.
  */
 @RestController
 @RequestMapping("/supervisors")
@@ -58,4 +59,23 @@ public class SupervisorController {
     return new ResponseEntity<>(savedSupervisor, HttpStatus.CREATED);
   }
 
+  /**
+   * Updates a Supervisor entity from the database.
+   * @param id which is the entity's id to be changed
+   * @param supervisor which is the updated entity
+   * @return the updated Supervisor with the Http status created.
+   */
+
+  @PutMapping(value = ("/{id}"))
+  public ResponseEntity<Supervisor> updateSupervisor (@PathVariable("id") long id,
+                                                      @RequestBody Supervisor supervisor) {
+    if (supervisorService.supervisorExists(id)) {
+      Supervisor updatedSupervisor = supervisorService.updateSupervisor(id, supervisor);
+      return new ResponseEntity<>(updatedSupervisor, HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot update non-existing Supervisor", new ResourceNotFoundException()
+      );
+    }
+  }
 }

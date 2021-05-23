@@ -1,6 +1,5 @@
 package org.scoalaonline.api.controller;
 
-import org.scoalaonline.api.model.Corporatist;
 import org.scoalaonline.api.model.Department;
 import org.scoalaonline.api.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.scoalaonline.api.exception.*;
 import java.util.List;
 
 /**
- * Department controller class, containing GET functions.
+ * Department controller class, containing GET, POST, PUT and DELETE functions.
  */
 @RestController
 @RequestMapping("/departments")
@@ -22,7 +21,6 @@ public class DepartmentController {
   @Autowired
   DepartmentService departmentService;
 
-  //region getter mappings
   /**
    * Returns all departments from the list.
    * @return a list of departments, along with HttpStatus.OK.
@@ -59,5 +57,23 @@ public class DepartmentController {
     return new ResponseEntity<>(savedDepartment, HttpStatus.CREATED);
   }
 
-  //endregion
+  /**
+   * Updates a Department entity from the database.
+   * @param id which is the entity's id to be changed
+   * @param department which is the updated entity
+   * @return the updated Department with the Http status created.
+   */
+
+  @PutMapping(value = ("/{id}"))
+  public ResponseEntity<Department> updateDepartment (@PathVariable("id") long id,
+                                                        @RequestBody Department department) {
+    if (departmentService.departmentExists(id)) {
+      Department updatedDepartment = departmentService.updateDepartment(id, department);
+      return new ResponseEntity<>(updatedDepartment, HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot update non-existing Department", new ResourceNotFoundException()
+      );
+    }
+  }
 }
