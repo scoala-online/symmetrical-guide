@@ -3,6 +3,7 @@ package org.scoalaonline.api.service;
 import org.scoalaonline.api.model.Supervisor;
 import org.scoalaonline.api.repo.SupervisorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -11,6 +12,7 @@ import java.util.Optional;
 /**
  * Supervisor class containing all the service methods
  */
+@Service
 public class SupervisorService {
 
   @Autowired
