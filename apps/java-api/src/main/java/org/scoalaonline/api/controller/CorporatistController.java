@@ -62,7 +62,6 @@ public class CorporatistController {
    * @param corporatist which is the updated entity
    * @return the updated Corporatist with the Http status created.
    */
-
   @PutMapping(value = ("/{id}"))
   public ResponseEntity<Corporatist> updateCorporatist (@PathVariable("id") long id,
                                                       @RequestBody Corporatist corporatist) {
@@ -72,6 +71,23 @@ public class CorporatistController {
     } else {
       throw new ResponseStatusException(
         HttpStatus.NOT_FOUND, "Cannot update non-existing Corporatist", new ResourceNotFoundException()
+      );
+    }
+  }
+
+  /**
+   * Deletes a Corporatist entity from the database.
+   * @param id which is the entity's id to be deleted
+   * @return the deleted Corporatist with the Http status created.
+   */
+  @DeleteMapping(value = ("/{id}"))
+  public ResponseEntity<HttpStatus> deleteCorporatist (@PathVariable("id") long id) {
+    if (corporatistService.corporatistExists(id)) {
+      corporatistService.deleteCorporatist(id);
+      return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot delete non-existing Corporatist", new ResourceNotFoundException()
       );
     }
   }

@@ -1,8 +1,6 @@
 package org.scoalaonline.api.controller;
 
 import net.bytebuddy.implementation.bind.annotation.Super;
-import org.scoalaonline.api.model.Corporatist;
-import org.scoalaonline.api.model.Department;
 import org.scoalaonline.api.model.Supervisor;
 import org.scoalaonline.api.service.SupervisorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,13 +57,13 @@ public class SupervisorController {
     return new ResponseEntity<>(savedSupervisor, HttpStatus.CREATED);
   }
 
+
   /**
    * Updates a Supervisor entity from the database.
    * @param id which is the entity's id to be changed
    * @param supervisor which is the updated entity
    * @return the updated Supervisor with the Http status created.
    */
-
   @PutMapping(value = ("/{id}"))
   public ResponseEntity<Supervisor> updateSupervisor (@PathVariable("id") long id,
                                                       @RequestBody Supervisor supervisor) {
@@ -78,4 +76,22 @@ public class SupervisorController {
       );
     }
   }
+
+  /**
+   * Deletes a Supervisor entity from the database.
+   * @param id which is the entity's id to be deleted
+   * @return the deleted Supervisor with the Http status created.
+   */
+  @DeleteMapping(value = ("/{id}"))
+  public ResponseEntity<HttpStatus> deleteSupervisor (@PathVariable("id") long id) {
+    if (supervisorService.supervisorExists(id)) {
+      supervisorService.deleteSupervisor(id);
+      return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    } else {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND, "Cannot delete non-existing Supervisor", new ResourceNotFoundException()
+      );
+    }
+  }
+
 }
